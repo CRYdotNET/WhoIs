@@ -32,7 +32,7 @@ namespace IpInfo
 
 
 
-                Console.WriteLine("Result for:" + ipaddress + Environment.NewLine + "Info: " + jsone + Environment.NewLine + Environment.NewLine); //MessageBox.Show("SILENTNIGHT LOGGER" + Environment.NewLine + "IP Location: " + jsone + Environment.NewLine + Environment.NewLine + "Copied info to clipboard!");
+                Console.WriteLine("Result for:" + ipaddress + Environment.NewLine + "Info: " + jsone + Environment.NewLine + Environment.NewLine); 
                 Console.ReadLine();
             }
         }
