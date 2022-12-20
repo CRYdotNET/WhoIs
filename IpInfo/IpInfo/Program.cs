@@ -1,40 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Newtonsoft.Json.Linq;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Management;
-using System.Net;
+using System.Net.Http;
 
 namespace IpInfo
 {
     internal class Program
     {
+        public static string ipaddres;
         static void Main(string[] args)
         {
             Console.WriteLine("Enter IP:");
-            string ipaddress = Console.ReadLine();
-            using (var objClient = new System.Net.WebClient())
-            {
-                WebClient clientpenis = new WebClient();
-                string bruh = clientpenis.DownloadString("http://ip-api.com/json/" + ipaddress);  //http://ip-api.com/json/
-                string hecko = bruh;
-                var Listo = new List<string> { bruh };
-                var tags = new { tags = Listo };
-
-                string result = string.Empty;
-                
-                JObject jsone = JObject.Parse(bruh);
-
-
-
-                Console.WriteLine("Result for:" + ipaddress + Environment.NewLine + "Info: " + jsone + Environment.NewLine + Environment.NewLine); 
-                Console.ReadLine();
-            }
+            ipaddres = Console.ReadLine();
+            GetIpInfo();
+            Console.ReadLine();
         }
+        public static async Task GetIpInfo()
+        {
+            HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Add("User-Agent", "IPInfo App");
+            var json = await client.GetStringAsync("https://ipapi.co/" + ipaddres + "/json/");
+            Console.WriteLine("Result for: " + ipaddres + Environment.NewLine + "Info: " + json + Environment.NewLine + Environment.NewLine); //MessageBox.Show("SILENTNIGHT LOGGER" + Environment.NewLine + "IP Location: " + jsone + Environment.NewLine + Environment.NewLine + "Copied info to clipboard!");
+        }
+
     }
 }
